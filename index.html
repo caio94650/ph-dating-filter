@@ -3,16 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Quick check • Nearby matches</title>
-<meta name="description" content="Select your profile to continue. 18+ only.">
+<title>Meet Hot Singles Near You!</title>
+<meta name="description" content="Tap now & start chatting tonight! 18+ only.">
 <meta name="robots" content="noindex,nofollow">
 <style>
   :root{--bg:#0b0c10;--card:#15171e;--txt:#f7f7f7;--muted:#a8b0bf;--m:#2b8cff;--f:#ff3f8e;--ok:#22c55e}
   *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--txt);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
   .wrap{min-height:100dvh;display:grid;place-items:center;padding:20px}
-  .card{width:100%;max-width:440px;background:var(--card);border:1px solid #1f2330;border-radius:16px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
-  h1{font-size:20px;margin:0 0 10px}
+  .card{width:100%;max-width:460px;background:var(--card);border:1px solid #1f2330;border-radius:16px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  h1{font-size:22px;margin:0 0 8px}
+  h2{font-size:18px;margin:10px 0 6px;color:#d1d6e3}
   p{color:var(--muted);margin:6px 0 14px;font-size:14px}
+  .pill{display:inline-block;padding:6px 10px;border-radius:999px;background:#222533;color:#a5b4fc;font-size:12px;margin-bottom:10px}
   .age{display:flex;gap:10px;margin:10px 0 14px}
   .age button,.btn{appearance:none;border:0;border-radius:12px;padding:14px 16px;font-weight:700;cursor:pointer;color:#fff;width:100%}
   .age button{background:#2a2f3c}
@@ -30,20 +32,22 @@
 </head>
 <body>
 <div class="wrap">
-  <!-- STEP 1: AGE -->
-  <div class="card" id="step1">
-    <h1>Quick check</h1>
-    <p>Please confirm that you are <strong>18+</strong> to continue.</p>
+
+  <!-- STEP 0: TAGLISH HOOK (reforça o criativo do push) -->
+  <div class="card" id="hook">
+    <span class="pill">🔥 May Nag-Like Sayo!</span>
+    <h1>Hanap ka ng Hot Singles Near You!</h1>
+    <p>Tap now & start chatting tonight! (Pindutin at mag-chat na ngayong gabi!)</p>
     <div class="age">
       <button type="button" onclick="alert('18+ only to continue.')">I am under 18</button>
       <button type="button" class="ok" onclick="goStep2()">I am 18+</button>
     </div>
-    <p class="small">By continuing, you agree to see partner content relevant to your area.</p>
+    <p class="small">By continuing, you agree to see partner content relevant to your area (18+).</p>
   </div>
 
-  <!-- STEP 2: GENDER -->
+  <!-- STEP 1: GENDER -->
   <div class="card hide" id="step2">
-    <h1>Select your profile</h1>
+    <h2>Select your profile</h2>
     <p>This helps us show better matches near you.</p>
     <div class="btns">
       <button class="btn m" onclick="goOffer('male')">I am Male</button>
@@ -54,22 +58,22 @@
 
   <!-- LOADING -->
   <div class="card hide" id="loading">
-    <h1>Finding nearby matches…</h1>
+    <h2>Finding nearby matches…</h2>
     <div class="loader" aria-hidden="true">
       <div class="dot"></div><div class="dot"></div><div class="dot"></div>
     </div>
     <p class="small" id="count">Preparing redirection…</p>
   </div>
+
 </div>
 
 <script>
-  // ======== PH LINKS (replace with your CPA URLs) ========
-  // Use dedicated PH links from your network (LosPollos/Crak/etc.)
+  // ======== PH LINKS (troque pelos seus URLs CPA) ========
   const OFFER_MALE_URL   = "https://YOUR_PH_CPA_LINK_FOR_MALE.com";
   const OFFER_FEMALE_URL = "https://YOUR_PH_CPA_LINK_FOR_FEMALE.com";
   // =======================================================
 
-  // carry UTM/SubID params to the offer (sub1, sub2, etc. if you want)
+  // carrega utms/subids recebidos e anexar à oferta
   const incoming = new URLSearchParams(location.search);
   function carryParams(url){
     if(!incoming.toString()) return url;
@@ -79,7 +83,7 @@
   }
 
   function goStep2(){
-    document.getElementById('step1').classList.add('hide');
+    document.getElementById('hook').classList.add('hide');
     document.getElementById('step2').classList.remove('hide');
   }
 
